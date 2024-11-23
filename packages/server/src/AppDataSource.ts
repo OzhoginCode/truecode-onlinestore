@@ -10,5 +10,5 @@ export default new DataSource({
   database: 'postgres',
   entities: [Product],
   synchronize: true,
-  logging: true,
+  logging: false,
 });

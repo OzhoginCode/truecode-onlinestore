@@ -47,21 +47,27 @@ module.exports = {
     'react/function-component-definition': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'react/jsx-filename-extension': [0,
-        {
-          "extensions": [
-            ".tsx"
-          ]
-        }
-      ],
-      '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/no-confusing-void-expression': 'off',
-      '@typescript-eslint/no-misused-promises': 'off',
-      '@typescript-eslint/unbound-method': 'off'
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/unbound-method': 'off',
   },
   overrides: [
     {
       files: ['**/*.js', '**/*.jsx'],
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
     },
+    {
+      files: ['**/*.ts'],
+      rules: {
+        '@typescript-eslint/triple-slash-reference': 'off'
+      }
+    }
   ]
 }
