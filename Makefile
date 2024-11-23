@@ -7,14 +7,8 @@ lint:
 lint-fix:
 	npm run lint:fix
 
-dev-server:
-	npm run dev:server
+build:
+	docker compose -f docker-compose.yml up --build
 
-build-server:
-	npm run build:server
-
-start-server:
-	npm run start:server
-
-start:
-	docker-compose up --build
+dev:
+	docker compose up --build

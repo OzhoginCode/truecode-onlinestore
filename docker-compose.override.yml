@@ -1,0 +1,10 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    volumes:
+      - ./packages/server:/app/packages/server
+    environment:
+      NODE_ENV: development
+    command: npm run dev:server
