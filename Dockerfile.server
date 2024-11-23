@@ -1,0 +1,16 @@
+FROM node:22
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+COPY packages/server/package.json ./packages/server/package.json
+
+RUN npm install --workspace=server
+
+COPY packages/server ./packages/server
+COPY Makefile ./
+COPY tsconfig.base.json ./
+
+RUN make build-server
+
+CMD ["make", "start-server"]

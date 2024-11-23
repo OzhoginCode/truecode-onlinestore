@@ -1,0 +1,11 @@
+node_modules
+Dockerfile
+docker-compose.yml
+README.md
+dist
+.git
+.gitignore
+.github
+.dockerignore
+.DS_Store
+.eslintrc.cjs
