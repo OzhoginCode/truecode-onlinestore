@@ -1,0 +1,25 @@
+{
+  "name": "truecode-onlinestore",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "dev:server": "npm run dev --workspace=server",
+    "build": "tsc --build",
+    "build:client": "tsc --build packages/client",
+    "build:server": "tsc --build packages/server",
+    "start:client": "next start packages/client",
+    "start:server": "node packages/server/dist/bin/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^8.57.1",
+    "typescript": "^5.6.3"
+  }
+}
