@@ -8,10 +8,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
+    // 'plugin:react-hooks/recommended',
     'airbnb',
     'plugin:@typescript-eslint/strict-type-checked',
     // 'plugin:@typescript-eslint/stylistic-type-checked',
+    'next/core-web-vitals',
+    'next/typescript',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: "@typescript-eslint/parser",
@@ -33,7 +35,18 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off',
     'import/extensions': 'off',
-    'react/function-component-definition': 'off',
+    'object-curly-newline': ['error', {
+      multiline: true,
+      minProperties: 5,
+      consistent: true,
+    }],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function",
+      }
+    ],
     'jsx-a11y/label-has-associated-control': 'off',
     'react/jsx-filename-extension': [0,
         {
