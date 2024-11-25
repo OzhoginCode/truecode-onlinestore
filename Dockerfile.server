@@ -8,7 +8,6 @@ COPY packages/server/package.json ./packages/server/package.json
 RUN npm install --workspace=server
 
 COPY packages/server ./packages/server
-COPY tsconfig.base.json ./
 
 RUN npm run build:server
 

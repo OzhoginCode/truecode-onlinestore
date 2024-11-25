@@ -1,9 +1,18 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
+    "target": "ESNext",
     "module": "CommonJS",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
     "types": ["node"],
+    "paths": {
+      "*": ["node_modules/*"]
+    },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
   },
