@@ -35,6 +35,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off',
     'import/extensions': 'off',
+    'import/no-anonymous-default-export': 'off',
     'object-curly-newline': ['error', {
       multiline: true,
       minProperties: 5,
