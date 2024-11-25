@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import morgan from 'morgan';
 import path from 'path';
 
 import AppDataSource from './AppDataSource';
@@ -16,6 +17,7 @@ export default () => {
   const app: Express = express();
 
   app.use(express.json());
+  app.use(morgan('short'));
   app.use(productRepoMiddleware);
 
   app.use('/api/products', productRouter);
