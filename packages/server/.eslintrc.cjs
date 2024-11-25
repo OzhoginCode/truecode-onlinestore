@@ -42,7 +42,9 @@ module.exports = {
     'react/prop-types': 'off',
     'import/extensions': 'off',
     'object-curly-newline': ['error', {
-      'minProperties': 5
+      multiline: true,
+      minProperties: 5,
+      consistent: true,
     }],
     'react/function-component-definition': 'off',
     'jsx-a11y/label-has-associated-control': 'off',

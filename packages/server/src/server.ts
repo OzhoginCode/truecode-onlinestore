@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import path from 'path';
 
 import AppDataSource from './AppDataSource';
 
@@ -17,7 +18,8 @@ export default () => {
   app.use(express.json());
   app.use(productRepoMiddleware);
 
-  app.use('/products', productRouter);
+  app.use('/api/products', productRouter);
+  app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
   app.use(errorHandlerMiddleware);
 

@@ -6,7 +6,9 @@
     "dev": "npx ts-node-dev bin/index.ts --respawn --transpileOnly"
   },
   "dependencies": {
+    "@types/multer": "^1.4.12",
     "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.20"
