@@ -1,10 +1,20 @@
 services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: development
+    command: npm run dev:client
+
   server:
     build:
       context: .
-      dockerfile: Dockerfile.server
+      dockerfile: Dockerfile.dev
     volumes:
-      - ./packages/server:/app/packages/server
+      - ./:/app
     environment:
       NODE_ENV: development
     command: npm run dev:server
