@@ -1,36 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import {
-  fetchProducts, fetchProductById, createProduct, updateProduct, deleteProduct,
-} from '../services/queries';
+import { Product, FetchProductsParams } from '@truecode-onlinestore/shared/types';
 
-interface ProductBase {
-  name: string;
-  description: string;
-  price: number;
-  discountedPrice: number;
-  sku: string;
-  photoSrc: string;
-}
+import { createProduct, updateProduct, deleteProduct } from '../services/queries';
+import { fetchProductsOptions, fetchProductOptions } from '../services/queryOptions';
 
-interface ProductWithId extends ProductBase {
-  id: string;
-}
-
-export const useFetchProducts = (params: {
-  page: number, limit: number, sort: string, order: string, filter: string
-}, initialData?: unknown) => (
-  useQuery({
-    queryKey: ['products', params],
-    queryFn: () => fetchProducts(params),
-    initialData,
-  })
+export const useFetchProducts = (params: FetchProductsParams) => (
+  useQuery(fetchProductsOptions(params))
 );
 
-export const useFetchProduct = (id: string) => useQuery({
-  queryKey: ['product', id],
-  queryFn: () => fetchProductById(id),
-  enabled: !!id,
-});
+export const useFetchProduct = (id: number) => useQuery(fetchProductOptions(id));
 
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
@@ -38,12 +16,8 @@ export const useCreateProduct = () => {
   return useMutation({
     mutationFn: createProduct,
     onSuccess: async () => {
-      console.log('Product added successfully');
       await queryClient.invalidateQueries({ queryKey: ['products'] });
       await queryClient.invalidateQueries({ queryKey: ['product'] });
-    },
-    onError: (error) => {
-      console.error('Error adding product:', error);
     },
   });
 };
@@ -52,7 +26,7 @@ export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, ...product }: ProductWithId) => updateProduct(id, product),
+    mutationFn: ({ id, ...product }: Product) => updateProduct(id, product),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['products'] });
       await queryClient.invalidateQueries({ queryKey: ['product'] });

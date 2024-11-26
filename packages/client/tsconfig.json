@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "next.config.оs" ],
   "exclude": [
     "node_modules"
   ]

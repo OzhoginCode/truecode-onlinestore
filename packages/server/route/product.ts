@@ -1,30 +1,32 @@
 import express, { Request, Response } from 'express';
 
-import ProductBase from '../types/ProductBase';
-import { getFilter, getPagination, formatProduct } from '../tools';
+import {
+  CreateProductRequest, CreateProductResponse, DeleteProductResponse,
+  GetProductResponse, GetProductsResponse, UpdateProductRequest,
+  UpdateProductResponse,
+} from '@truecode-onlinestore/shared/types';
+
 import upload from '../middleware/upload';
+import handleParams from '../middleware/handleParams';
+
+import formatProduct from '../tools';
 
 const productRouter = express.Router();
 
-productRouter.get('/', async (req: Request, res: Response) => {
-  const {
-    page, limit, sort = 'id', order = 'ASC', filter = '',
-  } = req.query as Record<string, string>;
-
-  const filterConditions = getFilter(filter);
-  const paginationConditions = getPagination(page, limit);
-
-  const allProducts = await req.productRepo.find();
-  const products = await req.productRepo.find({
-    where: filterConditions,
-    order: { [sort]: order as 'ASC' | 'DESC' },
-    ...paginationConditions,
+productRouter.get('/', handleParams, async (req: Request, res: Response<GetProductsResponse>) => {
+  const [products, totalCount] = await req.productRepo.findAndCount({
+    where: req.filterConditions,
+    order: req.sortConditions,
+    ...req.paginationConditions,
   });
 
-  res.json({ products: products.map(formatProduct), totalCount: allProducts.length });
+  res.json({
+    products: products.map(formatProduct),
+    totalCount,
+  });
 });
 
-productRouter.get('/:id', async (req: Request, res: Response) => {
+productRouter.get('/:id', async (req: Request<{ id: string }>, res: Response<GetProductResponse>) => {
   const { id } = req.params;
   const product = await req.productRepo.findOne({ where: { id: Number(id) } });
 
@@ -36,7 +38,7 @@ productRouter.get('/:id', async (req: Request, res: Response) => {
   res.json(formatProduct(product));
 });
 
-productRouter.post('/', upload.single('photo'), async (req: Request<object, object, ProductBase>, res: Response) => {
+productRouter.post('/', upload.single('photo'), async (req: Request<object, object, CreateProductRequest>, res: Response<CreateProductResponse>) => {
   const product = req.productRepo.create(req.body);
 
   if (req.file) {
@@ -47,16 +49,16 @@ productRouter.post('/', upload.single('photo'), async (req: Request<object, obje
   res.status(201).json({ id: product.id });
 });
 
-productRouter.put('/:id', async (req: Request<{ id: number }, object, ProductBase>, res: Response) => {
+productRouter.put('/:id', async (req: Request<{ id: string }, object, UpdateProductRequest>, res: Response<UpdateProductResponse>) => {
   const { id } = req.params;
   await req.productRepo.update(id, req.body);
-  res.send({ id });
+  res.send({ id: Number(id) });
 });
 
-productRouter.delete('/:id', async (req: Request<{ id: number }>, res: Response) => {
+productRouter.delete('/:id', async (req: Request<{ id: string }>, res: Response<DeleteProductResponse>) => {
   const { id } = req.params;
   await req.productRepo.delete(id);
-  res.send({ id });
+  res.send({ id: Number(id) });
 });
 
 export default productRouter;

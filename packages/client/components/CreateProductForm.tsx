@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import {
-  Form, Input, InputNumber, Modal, Button, Upload, message,
+  Form, Input, InputNumber, Modal, Button, Upload,
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 

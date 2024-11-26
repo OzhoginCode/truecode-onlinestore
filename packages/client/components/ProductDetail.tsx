@@ -1,51 +1,44 @@
 'use client';
 
-import { Card, Spin, Descriptions, Typography } from 'antd';
-import { useQuery } from '@tanstack/react-query';
-import { fetchProductById } from '../services/queries';
+import { Card, Descriptions, Typography } from 'antd';
+import { useFetchProduct } from '../hooks/useProducts';
 
 const { Meta } = Card;
 const { Text } = Typography;
 
 interface ProductDetailProps {
-  productId: string;
+  productId: number;
 }
 
 const ProductDetail = ({ productId }: ProductDetailProps) => {
-  const { data: product, error, isLoading } = useQuery({
-    queryKey: ['product', productId],
-    queryFn: () => fetchProductById(productId),
-  });
+  const { data: product, error } = useFetchProduct(productId);
 
-  if (isLoading) return <Spin size="large" />;
-  if (error) return <div>Error loading product</div>;
+  if (error) return <div>Ошибка загрузки товара</div>;
 
   return (
     <div style={{ padding: '20px' }}>
       <Card
-        style={{ width: '100%' }}
-        cover={
+        cover={(
           <img
             alt={product.name}
-            src={product.photoSrc || 'https://via.placeholder.com/500'}
+            src={product.photoSrc}
+            style={{
+              height: 300,
+              width: 300,
+              objectFit: 'cover',
+            }}
           />
-        }
+        )}
       >
         <Meta title={product.name} description={product.description} />
       </Card>
 
       <Descriptions title="Детали продукта" bordered layout="vertical" style={{ marginTop: '20px' }}>
         <Descriptions.Item label="Цена">
-          {product.discountedPrice ? (
-            <>
-              <Text delete>{product.price}</Text> <Text style={{ color: 'red' }}>{product.discountedPrice}</Text>
-            </>
-          ) : (
-            product.price
-          )}
+          <Text delete style={{ marginRight: '8px' }}>{product.price}</Text>
+          <Text style={{ color: 'red' }}>{product.discountedPrice}</Text>
         </Descriptions.Item>
         <Descriptions.Item label="Артикул (SKU)">{product.sku}</Descriptions.Item>
-        {/* Добавьте дополнительные поля здесь */}
       </Descriptions>
     </div>
   );

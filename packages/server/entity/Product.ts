@@ -1,14 +1,15 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductBase } from '@truecode-onlinestore/shared/types';
 
 @Entity()
-export default class Product {
+export default class Product implements ProductBase {
   @PrimaryGeneratedColumn()
     id!: number;
 
   @Column()
     name!: string;
 
-  @Column({ nullable: true })
+  @Column()
     description!: string;
 
   @Column('money')

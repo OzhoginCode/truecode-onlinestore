@@ -6,6 +6,7 @@
     "dev": "npx ts-node-dev bin/index.ts --respawn --transpileOnly"
   },
   "dependencies": {
+    "@truecode-onlinestore/shared": "1.0.0",
     "@types/morgan": "^1.9.9",
     "@types/multer": "^1.4.12",
     "express": "^4.21.1",

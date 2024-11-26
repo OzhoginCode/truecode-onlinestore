@@ -2,24 +2,13 @@
 
 import Link from 'next/link';
 import { Card, Typography } from 'antd';
+import { Product } from '@truecode-onlinestore/shared';
 
 const { Meta } = Card;
 const { Text } = Typography;
 
-const ProductCard = ({
-  product,
-}: {
-  product: {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
-    discountedPrice?: string;
-    sku: string;
-    photoSrc?: string;
-  };
-}) => (
-  <Link href={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+const ProductCard = ({ product }: { product: Product }) => (
+  <Link href={`/product/${String(product.id)}`}>
     <Card
       hoverable
       style={{
@@ -38,7 +27,7 @@ const ProductCard = ({
             objectFit: 'cover',
           }}
         />
-      )}
+        )}
     >
       <Meta
         title={(
@@ -52,24 +41,18 @@ const ProductCard = ({
               type="secondary"
               style={{
                 display: 'block',
-                height: '40px', // Фиксируем высоту блока описания
+                height: '40px',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
-                marginBottom: '8px',
+                marginBottom: '32px',
               }}
             >
               {product.description}
             </Text>
             <div>
-              {product.discountedPrice ? (
-                <>
-                  <Text delete style={{ marginRight: '8px' }}>{product.price}</Text>
-                  <Text style={{ color: 'red', fontWeight: 'bold' }}>{product.discountedPrice}</Text>
-                </>
-              ) : (
-                <Text style={{ fontWeight: 'bold' }}>{product.price}</Text>
-              )}
+              <Text delete style={{ marginRight: '8px' }}>{product.price}</Text>
+              <Text style={{ color: 'red', fontWeight: 'bold' }}>{product.discountedPrice}</Text>
             </div>
           </>
         )}

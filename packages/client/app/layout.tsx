@@ -11,14 +11,8 @@ import Providers from './providers';
 const { Header, Content } = Layout;
 
 const RootLayout = ({ children }: React.PropsWithChildren) => {
-  const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
+  const { token: { colorBgContainer } } = theme.useToken();
   const pathname = usePathname();
-
-  const getSelectedKey = () => {
-    if (pathname === '/') return '1';
-    if (pathname === '/manage') return '2';
-    return '';
-  };
 
   return (
     <html lang="ru">
@@ -27,30 +21,27 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
           <AntdRegistry>
             <Layout>
               <Header style={{ backgroundColor: colorBgContainer }}>
-                <div className="demo-logo" />
                 <Menu
                   theme="light"
                   mode="horizontal"
-                  defaultSelectedKeys={[getSelectedKey()]}
+                  defaultSelectedKeys={[pathname]}
                   items={[
                     {
-                      key: '1',
+                      key: '/',
                       label: <Link href="/">Каталог</Link>,
                     },
                     {
-                      key: '2',
+                      key: '/manage',
                       label: <Link href="/manage">Управление товарами</Link>,
                     },
                   ]}
                 />
               </Header>
-              <Content style={{ padding: '0 48px' }}>
+              <Content>
                 <div
                   style={{
                     background: colorBgContainer,
-                    minHeight: 280,
                     padding: 24,
-                    borderRadius: borderRadiusLG,
                   }}
                 >
                   {children}

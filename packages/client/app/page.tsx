@@ -1,19 +1,16 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { fetchProducts } from '../services/queries';
-import ProductGrid from '../components/ProductGrid';
+import fetchProductsDefaultParams from '../config/defaultParams';
+import { fetchProductsOptions } from '../services/queryOptions';
+import Catalog from '../components/Catalog';
 
 const CatalogPage = async () => {
   const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ['products'],
-    queryFn: fetchProducts,
-  });
+  await queryClient.prefetchQuery(fetchProductsOptions(fetchProductsDefaultParams));
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProductGrid />
+      <Catalog />
     </HydrationBoundary>
   );
 };

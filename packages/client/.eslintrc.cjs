@@ -26,6 +26,7 @@ module.exports = {
   settings: { react: { version: '18.3' } },
   plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
+    'max-len': ['error', {'code': 108 }],
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
       'warn',
@@ -56,6 +57,8 @@ module.exports = {
           ]
         }
       ],
+      '@next/next/no-html-link-for-pages': ['error', './app'],
+      '@next/next/no-img-element': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-confusing-void-expression': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
