@@ -1,6 +1,10 @@
 node_modules
-Dockerfile
+Makefile
+Dockerfile.client
+Dockerfile.server
+Dockerfile.dev
 docker-compose.yml
+docker-compose.override.yml
 README.md
 dist
 .git
