@@ -26,8 +26,10 @@ cd truecode-onlinestore
 
 ## Описание
 
-Стек: TypeScript, React, Next.JS, ANT Design, Docker, npm workspaces, eslint
+Стек: TypeScript, React, Next.JS, ANT Design, Docker, npm workspaces, eslint, github-actions
 
 Проект организован как монорепозиторий и упакован в Docker Compose. Настроены сборки двух разных образов: для разработки и для прода.
 
 В проекте используется npm workspaces, так как с помощью него удобно организовать JS-монорепозиторий и, например, шарить типы между фронтом и бэком
+
+Настроен CI - прогон линтера на github-actions. Для ускорения настроено кэширование node_modules между запусками workflow
