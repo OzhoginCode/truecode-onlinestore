@@ -5,7 +5,7 @@ const formatProductPhotoSrc = (product: Product): Product => {
 
   return ({
     ...product,
-    photoSrc: `${String(process.env.PUBLIC_API_URL)}${product.photoSrc}`,
+    photoSrc: `/api${product.photoSrc}`,
   });
 };
 

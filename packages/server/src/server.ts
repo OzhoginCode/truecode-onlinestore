@@ -21,7 +21,7 @@ export default () => {
   app.use(productRepoMiddleware);
 
   app.use('/api/products', productRouter);
-  app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+  app.use('/api/uploads', express.static(path.join(__dirname, '../uploads')));
 
   app.use(errorHandlerMiddleware);
 
