@@ -8,6 +8,7 @@ COPY packages/client/package.json ./packages/client/package.json
 RUN npm install --workspace=client
 
 COPY packages/client ./packages/client
+COPY packages/shared ./packages/shared
 
 RUN npm run build:client
 
