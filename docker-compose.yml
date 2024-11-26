@@ -1,4 +1,18 @@
 services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://server:3000
+    restart: always
+    depends_on:
+      - server
+
   server:
     build:
       context: .
@@ -8,7 +22,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-    restart: always
+      - PUBLIC_API_URL=http://localhost:3000
     depends_on:
       db:
         condition: service_healthy

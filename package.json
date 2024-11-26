@@ -7,12 +7,12 @@
   ],
   "scripts": {
     "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:fix": "eslint ./packages --ext .js,.jsx,.ts,.tsx --fix",
+    "dev:client": "npm run dev --workspace=client",
     "dev:server": "npm run dev --workspace=server",
-    "build": "tsc --build",
-    "build:client": "tsc --build packages/client",
+    "build:client": "npm run build --workspace=client",
     "build:server": "tsc --build packages/server",
-    "start:client": "next start packages/client",
+    "start:client": "npm run start --workspace=client",
     "start:server": "node packages/server/dist/bin/index.js"
   },
   "devDependencies": {

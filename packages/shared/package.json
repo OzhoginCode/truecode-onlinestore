@@ -1,0 +1,9 @@
+{
+  "name": "@truecode-onlinestore/shared",
+  "version": "1.0.0",
+  "main": "types/index.ts",
+  "type": "module",
+  "exports": {
+    "./types/*": "./types/*"
+  }
+}

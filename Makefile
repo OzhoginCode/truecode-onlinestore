@@ -12,3 +12,6 @@ build:
 
 dev:
 	docker compose up --build
+
+drop-database:
+	docker-compose down -v
