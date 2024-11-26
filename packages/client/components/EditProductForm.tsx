@@ -4,14 +4,21 @@ import { useState } from 'react';
 import {
   Form, Input, InputNumber, Modal, Button,
 } from 'antd';
+import { Product, ProductBase } from '@truecode-onlinestore/shared';
+
 import { useUpdateProduct } from '../hooks/useProducts';
 
-const EditProductForm = ({ product, onClose }) => {
+interface EditProductFormProps {
+  product: Product;
+  onClose: () => void;
+}
+
+const EditProductForm = ({ product, onClose }: EditProductFormProps) => {
   const [form] = Form.useForm();
   const updateProduct = useUpdateProduct();
   const [loading, setLoading] = useState(false);
 
-  const handleFinish = (values) => {
+  const handleFinish = (values: ProductBase) => {
     setLoading(true);
     updateProduct.mutate(
       { id: product.id, ...values },

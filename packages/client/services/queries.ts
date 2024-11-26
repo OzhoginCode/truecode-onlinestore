@@ -1,5 +1,5 @@
 import {
-  GetProductsResponse, GetProductResponse, CreateProductRequest,
+  GetProductsResponse, GetProductResponse,
   CreateProductResponse, UpdateProductRequest, UpdateProductResponse,
   DeleteProductResponse, FetchProductsParams,
 } from '@truecode-onlinestore/shared/types';
@@ -17,7 +17,7 @@ export const fetchProductById = async (id: number) => {
   return data;
 };
 
-export const createProduct = async (product: CreateProductRequest) => {
+export const createProduct = async (product: FormData) => {
   const { data } = await client.post<CreateProductResponse>(paths.products(), product);
   return data;
 };
