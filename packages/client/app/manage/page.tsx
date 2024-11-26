@@ -7,6 +7,8 @@ import {
   Avatar, List, Skeleton, Typography, Button,
 } from 'antd';
 
+import { Product } from '@truecode-onlinestore/shared';
+
 import EditProductForm from '../../components/EditProductForm';
 import CreateProductForm from '../../components/CreateProductForm';
 
@@ -15,15 +17,15 @@ import { useFetchProducts, useDeleteProduct } from '../../hooks/useProducts';
 const { Text } = Typography;
 
 const ManagePage = () => {
-  const [editingProduct, setEditingProduct] = useState(null);
+  const [editingProduct, setEditingProduct] = useState<null | Product>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   const { data, error, isLoading } = useFetchProducts({});
   const deleteProduct = useDeleteProduct();
 
-  if (error) return <div>Error loading products</div>;
+  if (error) return <div>Ошибка загрузки</div>;
 
-  const { products } = data || { products: [] };
+  const { products } = data;
 
   return (
     <>
@@ -42,14 +44,30 @@ const ManagePage = () => {
         renderItem={(product) => (
           <List.Item
             actions={[
-              <a key="edit" onClick={() => setEditingProduct(product)}>редактировать</a>,
-              <a key="delete" onClick={() => deleteProduct.mutate(product.id)}>удалить</a>,
+              <a
+                key="edit"
+                href="#"
+                onClick={() => setEditingProduct(product)}
+                role="button"
+                tabIndex={0}
+              >
+                редактировать
+              </a>,
+              <a
+                key="delete"
+                href="#"
+                onClick={() => deleteProduct.mutate(product.id)}
+                role="button"
+                tabIndex={0}
+              >
+                удалить
+              </a>,
             ]}
           >
             <Skeleton avatar title={false} loading={isLoading} active>
               <List.Item.Meta
                 avatar={<Avatar src={product.photoSrc} />}
-                title={<a href={`/product/${product.id}`}>{product.name}</a>}
+                title={<a href={`/product/${String(product.id)}`}>{product.name}</a>}
                 description={product.description}
               />
               <div>
