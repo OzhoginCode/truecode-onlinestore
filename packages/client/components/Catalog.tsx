@@ -15,7 +15,7 @@ const Catalog = () => {
   const { data, error, isFetching } = useFetchProducts(params);
   const { products, totalCount } = data;
 
-  if (error) return <div>Ошибка загрузки продуктов</div>;
+  if (error) return <div>Ошибка загрузки товаров</div>;
 
   const handlePageChange = (page: number, pageSize: number) => {
     setParams((prev) => ({ ...prev, page, limit: pageSize }));

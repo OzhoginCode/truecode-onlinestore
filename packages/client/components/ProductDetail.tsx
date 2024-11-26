@@ -33,7 +33,7 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         <Meta title={product.name} description={product.description} />
       </Card>
 
-      <Descriptions title="Детали продукта" bordered layout="vertical" style={{ marginTop: '20px' }}>
+      <Descriptions title="Детали товара" bordered layout="vertical" style={{ marginTop: '20px' }}>
         <Descriptions.Item label="Цена">
           <Text delete style={{ marginRight: '8px' }}>{product.price}</Text>
           <Text style={{ color: 'red' }}>{product.discountedPrice}</Text>

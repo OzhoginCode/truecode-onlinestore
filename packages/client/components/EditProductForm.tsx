@@ -57,24 +57,36 @@ const EditProductForm = ({ product, onClose }: EditProductFormProps) => {
         <Form.Item
           label="Название"
           name="name"
-          rules={[{ required: true, message: 'Введите название продукта' }]}
+          rules={[{ required: true, message: 'Введите название товара' }]}
         >
           <Input />
         </Form.Item>
-        <Form.Item label="Описание" name="description" rules={[{ required: true }]}>
+        <Form.Item
+          label="Описание"
+          name="description"
+          rules={[{ required: true, message: 'Введите название товара' }]}
+        >
           <Input.TextArea rows={3} />
         </Form.Item>
         <Form.Item
           label="Цена"
           name="price"
-          rules={[{ required: true, message: 'Введите цену продукта' }]}
+          rules={[{ required: true, message: 'Введите цену товара' }]}
         >
           <InputNumber style={{ width: '100%' }} min={0} />
         </Form.Item>
-        <Form.Item label="Цена со скидкой" name="discountedPrice" rules={[{ required: true }]}>
+        <Form.Item
+          label="Цена со скидкой"
+          name="discountedPrice"
+          rules={[{ required: true, message: 'Введите название товара' }]}
+        >
           <InputNumber style={{ width: '100%' }} min={0} />
         </Form.Item>
-        <Form.Item label="Артикул (SKU)" name="sku" rules={[{ required: true }]}>
+        <Form.Item
+          label="Артикул (SKU)"
+          name="sku"
+          rules={[{ required: true, message: 'Введите название товара' }]}
+        >
           <Input />
         </Form.Item>
         <Form.Item>

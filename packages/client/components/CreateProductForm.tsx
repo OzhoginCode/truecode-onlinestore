@@ -121,7 +121,7 @@ const CreateProductForm = ({ onClose }: CreateProductFormProps) => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={loading} block>
-            Создать продукт
+            Создать товар
           </Button>
         </Form.Item>
       </Form>
