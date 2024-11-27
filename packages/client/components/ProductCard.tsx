@@ -21,7 +21,7 @@ const ProductCard = ({ product }: { product: Product }) => (
       cover={(
         <img
           alt={product.name}
-          src={product.photoSrc}
+          src={product.photoSrc!}
           style={{
             height: 200,
             objectFit: 'cover',

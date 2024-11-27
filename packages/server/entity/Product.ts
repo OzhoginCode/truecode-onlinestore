@@ -21,6 +21,6 @@ export default class Product implements ProductBase {
   @Column()
     sku!: string;
 
-  @Column({ nullable: true })
-    photoSrc!: string;
+  @Column({ type: 'text', nullable: true })
+    photoSrc!: string | null;
 }
