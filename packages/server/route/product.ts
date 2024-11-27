@@ -9,8 +9,6 @@ import {
 import upload from '../middleware/upload';
 import handleParams from '../middleware/handleParams';
 
-import formatProduct from '../tools';
-
 const productRouter = express.Router();
 
 productRouter.get('/', handleParams, async (req: Request, res: Response<GetProductsResponse>) => {
@@ -21,7 +19,7 @@ productRouter.get('/', handleParams, async (req: Request, res: Response<GetProdu
   });
 
   res.json({
-    products: products.map(formatProduct),
+    products,
     totalCount,
   });
 });
@@ -35,14 +33,14 @@ productRouter.get('/:id', async (req: Request<{ id: string }>, res: Response<Get
     return;
   }
 
-  res.json(formatProduct(product));
+  res.json(product);
 });
 
 productRouter.post('/', upload.single('photo'), async (req: Request<object, object, CreateProductRequest>, res: Response<CreateProductResponse>) => {
   const product = req.productRepo.create(req.body);
 
   if (req.file) {
-    product.photoSrc = `/uploads/${req.file.filename}`;
+    product.photoSrc = `/api/uploads/${req.file.filename}`;
   }
 
   await req.productRepo.save(product);
