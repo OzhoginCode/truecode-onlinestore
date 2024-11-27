@@ -3,11 +3,11 @@ import Product from '../entity/Product';
 
 export default new DataSource({
   type: 'postgres',
-  host: 'db',
-  port: 5432,
-  username: 'postgres',
-  password: 'password',
-  database: 'postgres',
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   entities: [Product],
   synchronize: true,
   logging: false,

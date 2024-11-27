@@ -1,12 +1,17 @@
-import { Product } from '@truecode-onlinestore/shared/types';
+import path from 'path';
 
-const formatProductPhotoSrc = (product: Product): Product => {
+import { Product } from '@truecode-onlinestore/shared';
+import uploadsDir from '../storage/uploadsDir';
+
+export const getPhotoPath = (photoSrc: string) => (
+  path.join(uploadsDir, photoSrc)
+);
+
+export const formatProduct = (product: Product): Product => {
   if (!product.photoSrc) return product;
 
   return ({
     ...product,
-    photoSrc: `/api${product.photoSrc}`,
+    photoSrc: `/api/uploads/${product.photoSrc}`,
   });
 };
-
-export default formatProductPhotoSrc;

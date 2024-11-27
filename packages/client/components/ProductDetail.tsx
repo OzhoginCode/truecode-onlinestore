@@ -23,7 +23,7 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         <meta name="description" content={product.description} />
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
-        <meta property="og:image" content={product.photoSrc} />
+        <meta property="og:image" content={product.photoSrc!} />
         <meta property="og:type" content="product" />
       </Head>
       <div style={{ padding: '20px' }}>
@@ -31,7 +31,7 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
           cover={(
             <img
               alt={product.name}
-              src={product.photoSrc}
+              src={product.photoSrc!}
               style={{
                 height: 300,
                 width: 300,

@@ -3,6 +3,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   Avatar, List, Skeleton, Typography, Button,
 } from 'antd';
@@ -67,18 +68,14 @@ const ManagePage = () => {
             <Skeleton avatar title={false} loading={isLoading} active>
               <List.Item.Meta
                 avatar={<Avatar src={product.photoSrc} />}
-                title={<a href={`/product/${String(product.id)}`}>{product.name}</a>}
+                title={<Link href={`/product/${String(product.id)}`}>{product.name}</Link>}
                 description={product.description}
               />
               <div>
                 <Text strong>Цена: </Text>
-                {product.discountedPrice ? (
-                  <span style={{ color: 'red' }}>
-                    <Text delete>{product.price}</Text> {product.discountedPrice}
-                  </span>
-                ) : (
-                  <span>{product.price}</span>
-                )}
+                <span style={{ color: 'red' }}>
+                  <Text delete>{product.price}</Text> {product.discountedPrice}
+                </span>
               </div>
               <div>
                 <Text strong>Артикул: </Text>{product.sku}

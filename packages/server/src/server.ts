@@ -1,6 +1,5 @@
 import express, { Express } from 'express';
 import morgan from 'morgan';
-import path from 'path';
 
 import AppDataSource from './AppDataSource';
 
@@ -8,6 +7,7 @@ import productRepoMiddleware from '../middleware/productRepo';
 import errorHandlerMiddleware from '../middleware/errorHandler';
 
 import productRouter from '../route/product';
+import uploadDir from '../storage/uploadsDir';
 
 export default () => {
   AppDataSource
@@ -21,7 +21,7 @@ export default () => {
   app.use(productRepoMiddleware);
 
   app.use('/api/products', productRouter);
-  app.use('/api/uploads', express.static(path.join(__dirname, '../uploads')));
+  app.use('/api/uploads', express.static(uploadDir));
 
   app.use(errorHandlerMiddleware);
 

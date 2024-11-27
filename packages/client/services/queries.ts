@@ -1,7 +1,8 @@
 import {
   GetProductsResponse, GetProductResponse,
   CreateProductResponse, UpdateProductRequest, UpdateProductResponse,
-  DeleteProductResponse, FetchProductsParams,
+  DeleteProductResponse, FetchProductsParams, UpdatePhotoResponse,
+  DeletePhotoResponse,
 } from '@truecode-onlinestore/shared/types';
 
 import client from './apiClient';
@@ -29,5 +30,15 @@ export const updateProduct = async (id: number, product: UpdateProductRequest) =
 
 export const deleteProduct = async (id: number) => {
   const { data } = await client.delete<DeleteProductResponse>(paths.product(id));
+  return data;
+};
+
+export const updatePhoto = async (id: number, photoSrc: FormData) => {
+  const { data } = await client.patch<UpdatePhotoResponse>(paths.productPhoto(id), photoSrc);
+  return data;
+};
+
+export const deletePhoto = async (id: number) => {
+  const { data } = await client.delete<DeletePhotoResponse>(paths.productPhoto(id));
   return data;
 };

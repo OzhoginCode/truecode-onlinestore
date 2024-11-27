@@ -4,7 +4,7 @@ export interface ProductBase {
   price: number;
   discountedPrice: number;
   sku: string;
-  photoSrc?: string;
+  photoSrc: string | null;
 }
 
 export interface Product extends ProductBase {
@@ -22,7 +22,13 @@ export type CreateProductRequest = ProductBase;
 export type CreateProductResponse = { id: number };
 export type UpdateProductRequest = ProductBase;
 export type UpdateProductResponse = { id: number };
+export type DeleteProductRequest = { id: number };
 export type DeleteProductResponse = { id: number };
+
+export type UpdatePhotoRequest = { photoSrc: string };
+export type UpdatePhotoResponse = { photoSrc: string };
+export type DeletePhotoRequest = { id: number };
+export type DeletePhotoResponse = { id: number };
 
 export type SortOrder = 'ASC' | 'DESC';
 
