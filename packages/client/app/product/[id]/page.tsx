@@ -4,11 +4,11 @@ import { fetchProductOptions } from '../../../services/queryOptions';
 import ProductDetail from '../../../components/ProductDetail';
 
 interface ProductPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const ProductPage = async ({ params }: ProductPageProps) => {
-  const { id } = await params; // eslint-disable-line @typescript-eslint/await-thenable
+  const { id } = await params;
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(fetchProductOptions(Number(id)));
